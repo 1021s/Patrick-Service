@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
+const db = require('./db.js');
+mongoose.Promise = global.Promise;
+
 var Schema = mongoose.Schema;
 
-module.exports.blogSchema = new Schema({
+const listingSchema = new Schema({
   listingId: Number,
   type: String,
   yearBuilt: Number,
@@ -92,3 +95,7 @@ module.exports.blogSchema = new Schema({
     }
   }
 });
+
+const Listing = mongoose.model('Listing', listingSchema);
+
+module.exports = Listing;
