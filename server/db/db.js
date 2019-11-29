@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var blogSchema = new Schema({
+module.exports.blogSchema = new Schema({
   listingId: Number,
   type: String,
   yearBuilt: Number,
