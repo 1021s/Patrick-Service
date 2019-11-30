@@ -10,7 +10,7 @@ app.use(express.json());
 app.get('/homedetails/:id', function (req, res) {
   Model.find({listingId: req.params.id})
     .then(data => {
-      res.status(200).send(JSON.stringify(data));
+      res.status(200).send(data);
     })
     .catch(err => {
       res.status(500).send();
@@ -20,7 +20,7 @@ app.get('/homedetails/:id', function (req, res) {
 app.get('/allhomes', function (req, res) {
   Model.find({})
     .then(data => {
-      res.status(200).send(JSON.stringify(data));
+      res.status(200).send(data);
     })
     .catch(err => {
       res.status(500).send();

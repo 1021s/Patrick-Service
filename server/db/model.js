@@ -1,8 +1,4 @@
 var mongoose = require('mongoose');
-
-// don't think  I need these
-// but holding onto them for a minute to be sure
-
 const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
