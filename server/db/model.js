@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
-// const db = require('./index.js');
-// mongoose.Promise = global.Promise;
+
+// don't think  I need these
+// but holding onto them for a minute to be sure
+
+const db = require('./index.js');
+mongoose.Promise = global.Promise;
 
 var Schema = mongoose.Schema;
 
