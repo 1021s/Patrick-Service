@@ -1,0 +1,9 @@
+const seed = require('../../../server/db/seed.js');
+
+test('creates 100 mock listings', () => {
+  expect(seed.sampleListings.length).toBe(100);
+});
+
+test('adds mock listings to the database', () => {
+  expect(seed.insertSampleListings()).toBe(console.log(`${seed.sampleListings.length} items inserted`));
+});

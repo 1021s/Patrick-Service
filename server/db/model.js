@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
-const db = require('./db.js');
-mongoose.Promise = global.Promise;
+// const db = require('./index.js');
+// mongoose.Promise = global.Promise;
 
 var Schema = mongoose.Schema;
 
 const listingSchema = new Schema({
-  listingId: Number,
+  listingId: String,
   type: String,
   yearBuilt: Number,
   Heating: String,

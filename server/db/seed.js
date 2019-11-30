@@ -1,4 +1,4 @@
-const db = require('./db.js');
+const db = require('./index.js');
 const Listing = require('./model.js');
 var faker = require('faker');
 
@@ -10,9 +10,9 @@ for (let i = 0; i < 100; i++) {
   let id = i;
 
   if (id.toString().length < 2) {
-    id = Number('00' + id.toString());
+    id = '00' + id.toString();
   } else {
-    id = Number('0' + id.toString());
+    id = '0' + id.toString();
   }
 
   // generate different datatypes for different houses
@@ -114,12 +114,13 @@ for (let i = 0; i < 100; i++) {
 
   //   }));
   // }
-}
-console.log(sampleListings)
+};
 
 const insertSampleListings = function () {
   Listing.create(sampleListings)
-    .then(() => db.disconnect());
+    .then(console.log(`${sampleListings.length} items inserted`))
 };
 
-insertSampleListings();
+// insertSampleListings();
+module.exports.sampleListings = sampleListings;
+module.exports.insertSampleListings = insertSampleListings;
