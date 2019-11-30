@@ -12,7 +12,7 @@ const listingSchema = new Schema({
   cooling: String,
   parking: String,
   lot: String,
-  priceSqft: Number,
+  priceSqft: String,
   interiorDetails: {
     bedroomsAndBathrooms: {
       type: Map,
