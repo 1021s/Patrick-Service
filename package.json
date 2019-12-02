@@ -4,8 +4,10 @@
   "description": "Facts & Features Fake Zillow Module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "react-dev": "webpack -d --watch"
+    "start": "nodemon server/index.js",
+    "test": "jest --detectOpenHandles",
+    "react-dev": "webpack -d --watch",
+    "db-setup": "node server/db/seed.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +20,16 @@
   },
   "homepage": "https://github.com/1021s/Patrick-Service#readme",
   "dependencies": {
+    "blubird": "0.0.1-security",
+    "circleci": "^0.3.3",
+    "enzyme": "^3.10.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongoose": "^5.7.12",
+    "node": "^13.1.0",
+    "nodemon": "^2.0.1",
+    "path": "^0.12.7",
+    "puppeteer": "^2.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
@@ -29,6 +38,13 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "babel-loader": "^8.0.6",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^24.9.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   }

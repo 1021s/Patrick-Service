@@ -1,15 +1,18 @@
 var mongoose = require('mongoose');
+const db = require('./index.js');
+mongoose.Promise = global.Promise;
+
 var Schema = mongoose.Schema;
 
-var blogSchema = new Schema({
-  listingId: Number,
+const listingSchema = new Schema({
+  listingId: String,
   type: String,
   yearBuilt: Number,
   Heating: String,
   cooling: String,
   parking: String,
   lot: String,
-  priceSqft: Number,
+  priceSqft: String,
   interiorDetails: {
     bedroomsAndBathrooms: {
       type: Map,
@@ -92,3 +95,7 @@ var blogSchema = new Schema({
     }
   }
 });
+
+const Listing = mongoose.model('Listing', listingSchema);
+
+module.exports = Listing;
