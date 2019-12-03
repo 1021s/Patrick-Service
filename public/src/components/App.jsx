@@ -27,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Facts and features</h1>
+        <h1 className="title-line">Facts and features</h1>
         <GraphicsHeader listing={this.state.listing} />
       </div>
     );

@@ -11,9 +11,11 @@ app.use(express.json());
 app.get('/listings/:id', (req, res) => {
   Model.find({ listingId: req.params.id })
     .then((data) => {
+      console.log(data);
       res.status(200).send(data);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send(err);
     });
 });

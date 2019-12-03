@@ -1,104 +1,103 @@
+const faker = require('faker');
 const db = require('./index.js');
 const Listing = require('./model.js');
-var faker = require('faker');
 
-let sampleListings = [];
+const sampleListings = [];
 
 for (let i = 0; i < 100; i++) {
-
   // set up padding
   let id = i;
 
   if (id.toString().length < 2) {
-    id = '00' + id.toString();
+    id = `00${id.toString()}`;
   } else {
-    id = '0' + id.toString();
+    id = `0${id.toString()}`;
   }
 
   // generate different datatypes for different houses
   // will implement after everything else is working
-  //if (i < 25) {
+  // if (i < 25) {
   sampleListings.push(new Listing({
     listingId: id,
     type: faker.lorem.words(),
-    yearBuilt: faker.date.between('1942-01-01', '2018-12-31'),
-    Heating: faker.lorem.words(),
+    yearBuilt: faker.date.past(),
+    heating: faker.lorem.words(),
     cooling: faker.lorem.words(),
     parking: faker.lorem.words(),
-    lot: `${faker.random.number({min:1000, max:10000})} sqft`,
-    priceSqft: `$${faker.random.number({min:100, max:1000}))}`,
+    lot: `${faker.random.number()} sqft`,
+    priceSqft: `$${faker.random.number()}`,
     interiorDetails: {
       bedroomsAndBathrooms: {
-        bedrooms: faker.random.number(6),
-        bathrooms: faker.random.number(4),
-        fullBathrooms: faker.random.number(3),
-        halfBathrooms: faker.random.number(2)
+        bedrooms: faker.random.number(),
+        bathrooms: faker.random.number(),
+        fullBathrooms: faker.random.number(),
+        halfBathrooms: faker.random.number(),
       },
       basement: {
-        basement: faker.lorem.words()
+        basement: faker.lorem.words(),
       },
       flooring: {
-        flooring: faker.lorem.words()
+        flooring: faker.lorem.words(),
       },
       heating: {
-        heating: `${faker.lorem.words()}, ${faker.lorem.words()}`
+        heating: `${faker.lorem.words()}, ${faker.lorem.words()}`,
       },
       appliances: {
-        appliances: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`
+        appliances: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`,
       },
       otherInteriorFeatures: {
-        livableArea: `${faker.random.number({min:250, max:15000})} sqft`
-      }
+        livableArea: `${faker.random.number()} sqft`,
+      },
     },
     propertyDetails: {
       parking: {
         parkingFeatures: faker.lorem.words(),
-        garageSpaces: faker.lorem.words()
+        garageSpaces: faker.lorem.words(),
       },
       property: {
         stories: faker.random.number(),
         exteriorFeatures: faker.lorem.word(),
-        viewDescription: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`
+        viewDescription: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`,
       },
       lot: {
-        lotSize: `${faker.random.number({min:1000, max:10000})} acres`
+        lotSize: `${faker.random.number()} acres`,
       },
       otherPropertyInformation: {
-        parcelNumber: faker.random.number()
-      }
+        parcelNumber: faker.random.number(),
+      },
     },
     constructionDetails: {
       typeAndStyle: {
-        homeType: faker.lorem.words()
+        homeType: faker.lorem.words(),
       },
       materialInformation: {
-        roof: faker.lorem.words()
+        roof: faker.lorem.words(),
       },
       condition: {
         newConstruction: faker.random.boolean(),
-        yearBuilt: faker.date.between('1942-01-01', '2018-12-31')
-      }
+        yearBuilt: faker.date.past(),
+      },
     },
     utilitiesGreenEnergyDetails: {
       utility: {
         sewerInformation: faker.lorem.words(),
-        internetAndTv: faker.lorem.words()
+        internetAndTv: faker.lorem.words(),
       },
       greenEnergy: {
-        Sunscore: `${faker.lorem.words()}: ${faker.random.number(100)}`
-      }
+        Sunscore: `${faker.lorem.words()}: ${faker.random.number()}`,
+      },
     },
     communityAndNeighborhoodDetails: {
       Location: {
-        Region: faker.address.county()
-      }
+        Region: faker.random.locale(),
+      },
     },
     hoaAndFinancialDetails: {
       otherFinancialInformation: {
-        taxAssessedValue: `$${faker.random.number(5000000)}`,
-        annualTaxAmount: `$${faker.random.number(60000)}`
-      }
-    }
+        taxAssessedValue: `$${faker.random.number()}`,
+        annualTaxAmount: `$${faker.random.number()}`,
+      },
+    },
   }));
 
   // } else if (i < 50) {
@@ -114,13 +113,12 @@ for (let i = 0; i < 100; i++) {
 
   //   }));
   // }
-};
+}
+console.log(sampleListings);
 
 const insertSampleListings = function () {
   Listing.create(sampleListings)
-    .then(console.log(`${sampleListings.length} items inserted`))
+    .then(() => db.disconnect());
 };
 
-// insertSampleListings();
-module.exports.sampleListings = sampleListings;
-module.exports.insertSampleListings = insertSampleListings;
+insertSampleListings();
