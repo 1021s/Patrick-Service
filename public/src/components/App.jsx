@@ -1,5 +1,5 @@
+/* eslint-disable consistent-return */
 import React from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import GraphicsHeader from './GraphicsHeader';
 import InteriorDetails from './InteriorDetails';
@@ -16,15 +16,17 @@ class App extends React.Component {
 
     this.state = {
       listing: [],
+      expanded: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.expand = this.expand.bind(this);
   }
 
   componentDidMount() {
     // having issues with serving static asset, will fix
     // const query = window.location.search.substring(1);
     axios.get(
-      `http://localhost:3001/028`,
+      'http://localhost:3001/028',
     )
       .then((data) => {
         this.setState({
@@ -33,27 +35,58 @@ class App extends React.Component {
       });
   }
 
+  expand(event) {
+    event.preventDefault();
+    const { expanded } = this.state;
+    if (expanded === false) {
+      this.setState({
+        expanded: true,
+      });
+    } else {
+      this.setState({
+        expanded: false,
+      });
+    }
+  }
+
   render() {
-    return (
-      <div>
-        <h1 className="title-line">Facts and features</h1>
-        <GraphicsHeader listing={this.state.listing} />
-        <h3 className="details">Interior details</h3>
-        <InteriorDetails listing={this.state.listing.interiorDetails} />
-        <h3 className="details">Property details</h3>
-        <PropertyDetails listing={this.state.listing.propertyDetails} />
-        <h3 className="details">Construction details</h3>
-        <ConstructionDetails listing={this.state.listing.constructionDetails} />
-        <h3 className="details">Utilities / Green Energy Details</h3>
-        <UtilitiesDetails listing={this.state.listing.utilitiesGreenEnergyDetails} />
-        <h3 className="details">Community and Neighborhood Details</h3>
-        <CommunityDetails listing={this.state.listing.communityAndNeighborhoodDetails} />
-        <h3 className="details">HOA and financial details</h3>
-        <HoaDetails listing={this.state.listing.hoaAndFinancialDetails} />
-        <h3 className="details">Other</h3>
-        <OtherDetails listing={this.state.listing} />
-      </div>
-    );
+    const {
+      listing, interiorDetails, propertyDetails,
+      constructionDetails, utilitiesGreenEnergyDetails,
+      communityAndNeighborhoodDetails, hoaAndFinancialDetails, expanded,
+    } = this.state;
+    if (expanded === false) {
+      return (
+        <div>
+          <h1 className="title-line">Facts and features</h1>
+          <GraphicsHeader listing={listing} />
+          <button className="link" onClick={this.expand} type="button">See more facts and features</button>
+        </div>
+      );
+    }
+    if (expanded === true) {
+      return (
+        <div>
+          <h1 className="title-line">Facts and features</h1>
+          <GraphicsHeader listing={listing} />
+          <h3 className="details">Interior details</h3>
+          <InteriorDetails listing={interiorDetails} />
+          <h3 className="details">Property details</h3>
+          <PropertyDetails listing={propertyDetails} />
+          <h3 className="details">Construction details</h3>
+          <ConstructionDetails listing={constructionDetails} />
+          <h3 className="details">Utilities / Green Energy Details</h3>
+          <UtilitiesDetails listing={utilitiesGreenEnergyDetails} />
+          <h3 className="details">Community and Neighborhood Details</h3>
+          <CommunityDetails listing={communityAndNeighborhoodDetails} />
+          <h3 className="details">HOA and financial details</h3>
+          <HoaDetails listing={hoaAndFinancialDetails} />
+          <h3 className="details">Other</h3>
+          <OtherDetails listing={listing} />
+          <button className="link" onClick={this.expand} type="button">See less facts and features</button>
+        </div>
+      );
+    }
   }
 }
 
