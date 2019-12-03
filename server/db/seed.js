@@ -96,9 +96,8 @@ for (let i = 0; i < 100; i += 1) {
     },
   }));
 }
-console.log(sampleListings);
 
-const insertSampleListings = function () {
+const insertSampleListings = function insertSampleListings() {
   Listing.create(sampleListings)
     .then(() => db.disconnect());
 };

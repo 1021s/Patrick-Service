@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 import ListHelper from './ListHelper';
 
 const CommunityDetails = ({ listing }) => (
@@ -14,15 +14,5 @@ const CommunityDetails = ({ listing }) => (
     </div>
   </div>
 );
-
-CommunityDetails.propTypes = {
-  listing: PropTypes.shape({
-    location: PropTypes.string,
-  }),
-};
-
-CommunityDetails.defaultProps = {
-  listing: 'house',
-};
 
 export default CommunityDetails;

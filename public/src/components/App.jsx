@@ -51,9 +51,7 @@ class App extends React.Component {
 
   render() {
     const {
-      listing, interiorDetails, propertyDetails,
-      constructionDetails, utilitiesGreenEnergyDetails,
-      communityAndNeighborhoodDetails, hoaAndFinancialDetails, expanded,
+      listing, expanded,
     } = this.state;
     if (expanded === false) {
       return (
@@ -70,17 +68,17 @@ class App extends React.Component {
           <h1 className="title-line">Facts and features</h1>
           <GraphicsHeader listing={listing} />
           <h3 className="details">Interior details</h3>
-          <InteriorDetails listing={interiorDetails} />
+          <InteriorDetails listing={listing.interiorDetails} />
           <h3 className="details">Property details</h3>
-          <PropertyDetails listing={propertyDetails} />
+          <PropertyDetails listing={listing.propertyDetails} />
           <h3 className="details">Construction details</h3>
-          <ConstructionDetails listing={constructionDetails} />
+          <ConstructionDetails listing={listing.constructionDetails} />
           <h3 className="details">Utilities / Green Energy Details</h3>
-          <UtilitiesDetails listing={utilitiesGreenEnergyDetails} />
+          <UtilitiesDetails listing={listing.utilitiesGreenEnergyDetails} />
           <h3 className="details">Community and Neighborhood Details</h3>
-          <CommunityDetails listing={communityAndNeighborhoodDetails} />
+          <CommunityDetails listing={listing.communityAndNeighborhoodDetails} />
           <h3 className="details">HOA and financial details</h3>
-          <HoaDetails listing={hoaAndFinancialDetails} />
+          <HoaDetails listing={listing.hoaAndFinancialDetails} />
           <h3 className="details">Other</h3>
           <OtherDetails listing={listing} />
           <button className="link" onClick={this.expand} type="button">See less facts and features</button>
