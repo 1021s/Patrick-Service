@@ -1,14 +1,14 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const listingSchema = new Schema({
   listingId: String,
   type: String,
   yearBuilt: Number,
-  Heating: String,
+  heating: String,
   cooling: String,
   parking: String,
   lot: String,
@@ -16,84 +16,84 @@ const listingSchema = new Schema({
   interiorDetails: {
     bedroomsAndBathrooms: {
       type: Map,
-      of: Number
+      of: Number,
     },
     basement: {
       type: Map,
-      of: String
+      of: String,
     },
     flooring: {
       type: Map,
-      of: String
+      of: String,
     },
     heating: {
       type: Map,
-      of: String
+      of: String,
     },
     appliances: {
       type: Map,
-      of: String
+      of: String,
     },
     otherInteriorFeatures: {
       type: Map,
-      of: String
+      of: String,
     },
   },
   propertyDetails: {
     parking: {
       type: Map,
-      of: String
+      of: String,
     },
     property: {
       type: Map,
-      of: String
+      of: String,
     },
     lot: {
       type: Map,
-      of: String
+      of: String,
     },
     otherPropertyInformation: {
       type: Map,
-      of: String
-    }
+      of: String,
+    },
   },
   constructionDetails: {
     typeAndStyle: {
       type: Map,
-      of: String
+      of: String,
     },
     materialInformation: {
       type: Map,
-      of: String
+      of: String,
     },
     condition: {
       type: Map,
-      of: String
-    }
+      of: String,
+    },
   },
   utilitiesGreenEnergyDetails: {
     utility: {
       type: Map,
-      of: String
+      of: String,
     },
     greenEnergy: {
       type: Map,
-      of: String
-    }
+      of: String,
+    },
   },
   communityAndNeighborhoodDetails: {
     Location: {
       type: Map,
-      of: String
-    }
+      of: String,
+    },
   },
   hoaAndFinancialDetails: {
     sourceDetails: {
       type: Map,
-      of: String
+      of: String,
 
-    }
-  }
+    },
+  },
 });
 
 const Listing = mongoose.model('Listing', listingSchema);

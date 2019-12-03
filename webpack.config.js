@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'public', 'src', 'index.js'),
+  entry: path.resolve(__dirname, 'public', 'src', 'index.jsx'),
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -15,15 +15,16 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react']
-            }
-          }
-        ]
-      }
-    ]
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: ['@babel/transform-runtime'],
+            },
+          },
+        ],
+      },
+    ],
   },
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx'],
+  },
 };
