@@ -1,8 +1,40 @@
 import React from 'react';
+import ListHelper from './ListHelper';
 
 const PropertyDetails = ({ listing }) => (
   <div>
-
+    <div>
+      <div className="type">Parking</div>
+      <ul>
+        {typeof listing === 'object' && Object.keys(listing.parking).map((key, i) => (
+          <ListHelper key={i} entry={key} value={listing.parking[key]} />
+        ))}
+      </ul>
+    </div>
+    <div>
+      <div className="type">Property</div>
+      <ul>
+        {typeof listing === 'object' && Object.keys(listing.property).map((key, i) => (
+          <ListHelper key={i} entry={key} value={listing.property[key]} />
+        ))}
+      </ul>
+    </div>
+    <div>
+      <div className="type">Lot</div>
+      <ul>
+        {typeof listing === 'object' && Object.keys(listing.lot).map((key, i) => (
+          <ListHelper key={i} entry={key} value={listing.lot[key]} />
+        ))}
+      </ul>
+    </div>
+    <div>
+      <div className="type">Other property information</div>
+      <ul>
+        {typeof listing === 'object' && Object.keys(listing.otherPropertyInformation).map((key, i) => (
+          <ListHelper key={i} entry={key} value={listing.otherPropertyInformation[key]} />
+        ))}
+      </ul>
+    </div>
   </div>
 );
 

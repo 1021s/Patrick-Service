@@ -8,14 +8,12 @@ app.use(express.static(`${__dirname}/../public/dist`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/listings/:id', (req, res) => {
+app.get('/:id', (req, res) => {
   Model.find({ listingId: req.params.id })
     .then((data) => {
-      console.log(data);
       res.status(200).send(data);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).send(err);
     });
 });
