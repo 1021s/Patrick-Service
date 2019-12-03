@@ -6,8 +6,8 @@ const CommunityDetails = ({ listing }) => (
     <div>
       <div className="type">Location</div>
       <ul>
-        {typeof listing === 'object' && Object.keys(listing.location).map((key, i) => (
-          <ListHelper key={i} entry={key} value={listing.location[key]} />
+        {typeof listing === 'object' && Object.keys(listing.location).map((key) => (
+          <ListHelper key={key} entry={key} value={listing.location[key]} />
         ))}
       </ul>
     </div>

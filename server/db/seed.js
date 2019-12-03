@@ -4,7 +4,7 @@ const Listing = require('./model.js');
 
 const sampleListings = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 100; i += 1) {
   let id = i;
 
   if (id.toString().length < 2) {

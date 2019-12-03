@@ -6,8 +6,8 @@ const HoaDetails = ({ listing }) => (
     <div>
       <div className="type">Other financial information</div>
       <ul>
-        {typeof listing === 'object' && Object.keys(listing.otherFinancialInformation).map((key, i) => (
-          <ListHelper key={i} entry={key} value={listing.otherFinancialInformation[key]} />
+        {typeof listing === 'object' && Object.keys(listing.otherFinancialInformation).map((key) => (
+          <ListHelper key={key} entry={key} value={listing.otherFinancialInformation[key]} />
         ))}
       </ul>
     </div>

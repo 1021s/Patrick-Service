@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('./index.js');
+
 mongoose.Promise = global.Promise;
 
 const { Schema } = mongoose;
@@ -91,7 +92,6 @@ const listingSchema = new Schema({
     sourceDetails: {
       type: Map,
       of: String,
-
     },
   },
 });
