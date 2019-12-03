@@ -5,7 +5,6 @@ const Listing = require('./model.js');
 const sampleListings = [];
 
 for (let i = 0; i < 100; i++) {
-  // set up padding
   let id = i;
 
   if (id.toString().length < 2) {
@@ -14,13 +13,10 @@ for (let i = 0; i < 100; i++) {
     id = `0${id.toString()}`;
   }
 
-  // generate different datatypes for different houses
-  // will implement after everything else is working
-  // if (i < 25) {
   sampleListings.push(new Listing({
     listingId: id,
     type: faker.lorem.words(),
-    yearBuilt: faker.date.between('1942-01-01', '2018-12-31'),
+    yearBuilt: faker.random.number({ min: 1942, max: 2019 }),
     heating: faker.lorem.words(),
     cooling: faker.lorem.words(),
     parking: faker.lorem.words(),
@@ -75,7 +71,7 @@ for (let i = 0; i < 100; i++) {
       },
       condition: {
         newConstruction: faker.random.boolean(),
-        yearBuilt: faker.date.between('1942-01-01', '2018-12-31'),
+        yearBuilt: faker.random.number({ min: 1942, max: 2019 }),
       },
     },
     utilitiesGreenEnergyDetails: {
@@ -84,12 +80,12 @@ for (let i = 0; i < 100; i++) {
         internetAndTv: faker.lorem.words(),
       },
       greenEnergy: {
-        Sunscore: `${faker.lorem.words()}: ${faker.random.number(100)}`,
+        sunscore: `${faker.lorem.words()}: ${faker.random.number(100)}`,
       },
     },
     communityAndNeighborhoodDetails: {
-      Location: {
-        Region: faker.address.county(),
+      location: {
+        region: faker.address.county(),
       },
     },
     hoaAndFinancialDetails: {
@@ -99,20 +95,6 @@ for (let i = 0; i < 100; i++) {
       },
     },
   }));
-
-  // } else if (i < 50) {
-  //   sampleListings.push(new Listing({
-
-  //   }));
-  // } else if (i < 75) {
-  //   sampleListings.push(new Listing({
-
-  //   }));
-  // } else if (i < 100) {
-  //   sampleListings.push(new Listing({
-
-  //   }));
-  // }
 }
 console.log(sampleListings);
 
