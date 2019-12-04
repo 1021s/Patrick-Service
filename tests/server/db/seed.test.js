@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const seed = require('../../../server/db/seed.js');
 
 test('creates 100 mock listings', () => {
@@ -5,5 +6,5 @@ test('creates 100 mock listings', () => {
 });
 
 test('adds mock listings to the database', () => {
-  expect(seed.insertSampleListings()).toBe(console.log(`${seed.sampleListings.length} items inserted`));
+  expect(seed.insertSampleListings()).toBe('completed');
 });

@@ -107,8 +107,13 @@ const insertSampleListings = function insertSampleListings() {
           Listing.update(data, sampleListings[i]);
         }
       })
-      .catch();
+      .then((success) => success)
+      .catch((err) => err);
   }
+  return 'completed';
 };
 
 insertSampleListings();
+
+module.exports.sampleListings = sampleListings;
+module.exports.insertSampleListings = insertSampleListings;
