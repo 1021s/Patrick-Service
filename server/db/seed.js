@@ -98,8 +98,17 @@ for (let i = 0; i < 100; i += 1) {
 }
 
 const insertSampleListings = function insertSampleListings() {
-  Listing.create(sampleListings)
-    .then(() => db.disconnect());
+  for (let i = 0; i < sampleListings.length; i += 1) {
+    Listing.findOne({ listingId: sampleListings[i].listingId })
+      .then((data) => {
+        if (data === null) {
+          Listing.create(sampleListings[i]);
+        } else {
+          Listing.update(data, sampleListings[i]);
+        }
+      })
+      .catch();
+  }
 };
 
 insertSampleListings();
