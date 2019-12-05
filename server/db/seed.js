@@ -1,5 +1,5 @@
 const faker = require('faker');
-const db = require('./index.js');
+const mongoose = require('mongoose');
 const Listing = require('./model.js');
 
 const sampleListings = [];
@@ -102,14 +102,16 @@ const insertSampleListings = function insertSampleListings() {
     Listing.findOne({ listingId: sampleListings[i].listingId })
       .then((data) => {
         if (data === null) {
-          Listing.create(sampleListings[i]);
+          Listing.create(sampleListings[i])
+            .catch((err) => err);
         } else {
-          Listing.update(data, sampleListings[i]);
+          Listing.update(data, sampleListings[i])
+            .catch((err) => err);
         }
       })
-      .then((success) => success)
       .catch((err) => err);
   }
+  setTimeout(() => mongoose.disconnect(), 1000);
   return 'completed';
 };
 
