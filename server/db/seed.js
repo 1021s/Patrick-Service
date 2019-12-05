@@ -1,126 +1,116 @@
-const db = require('./index.js');
+const faker = require('faker');
+const mongoose = require('mongoose');
 const Listing = require('./model.js');
-var faker = require('faker');
 
-let sampleListings = [];
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
-for (let i = 0; i < 100; i++) {
+const sampleListings = [];
 
-  // set up padding
+for (let i = 0; i < 100; i += 1) {
   let id = i;
 
   if (id.toString().length < 2) {
-    id = '00' + id.toString();
+    id = `00${id.toString()}`;
   } else {
-    id = '0' + id.toString();
+    id = `0${id.toString()}`;
   }
 
-  // generate different datatypes for different houses
-  // will implement after everything else is working
-  //if (i < 25) {
   sampleListings.push(new Listing({
     listingId: id,
     type: faker.lorem.words(),
-    yearBuilt: faker.date.between('1942-01-01', '2018-12-31'),
-    Heating: faker.lorem.words(),
+    yearBuilt: faker.random.number({ min: 1942, max: 2019 }),
+    heating: faker.lorem.words(),
     cooling: faker.lorem.words(),
     parking: faker.lorem.words(),
-    lot: `${faker.random.number({min:1000, max:10000})} sqft`,
-    priceSqft: `$${faker.random.number({min:100, max:1000}))}`,
+    lot: `${faker.random.number({ min: 1000, max: 10000 })} sqft`,
+    priceSqft: `$${faker.random.number({ min: 100, max: 1000 })}`,
     interiorDetails: {
       bedroomsAndBathrooms: {
         bedrooms: faker.random.number(6),
         bathrooms: faker.random.number(4),
         fullBathrooms: faker.random.number(3),
-        halfBathrooms: faker.random.number(2)
+        halfBathrooms: faker.random.number(2),
       },
       basement: {
-        basement: faker.lorem.words()
+        basement: faker.lorem.words(),
       },
       flooring: {
-        flooring: faker.lorem.words()
+        flooring: faker.lorem.words(),
       },
       heating: {
-        heating: `${faker.lorem.words()}, ${faker.lorem.words()}`
+        heating: `${faker.lorem.words()}, ${faker.lorem.words()}`,
       },
       appliances: {
-        appliances: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`
+        appliances: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`,
       },
       otherInteriorFeatures: {
-        livableArea: `${faker.random.number({min:250, max:15000})} sqft`
-      }
+        livableArea: `${faker.random.number({ min: 250, max: 15000 })} sqft`,
+      },
     },
     propertyDetails: {
       parking: {
         parkingFeatures: faker.lorem.words(),
-        garageSpaces: faker.lorem.words()
+        garageSpaces: faker.lorem.words(),
       },
       property: {
         stories: faker.random.number(),
         exteriorFeatures: faker.lorem.word(),
-        viewDescription: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`
+        viewDescription: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`,
       },
       lot: {
-        lotSize: `${faker.random.number({min:1000, max:10000})} acres`
+        lotSize: `${faker.random.number({ min: 1000, max: 10000 })} acres`,
       },
       otherPropertyInformation: {
-        parcelNumber: faker.random.number()
-      }
+        parcelNumber: faker.random.number(),
+      },
     },
     constructionDetails: {
       typeAndStyle: {
-        homeType: faker.lorem.words()
+        homeType: faker.lorem.words(),
       },
       materialInformation: {
-        roof: faker.lorem.words()
+        roof: faker.lorem.words(),
       },
       condition: {
         newConstruction: faker.random.boolean(),
-        yearBuilt: faker.date.between('1942-01-01', '2018-12-31')
-      }
+        yearBuilt: faker.random.number({ min: 1942, max: 2019 }),
+      },
     },
     utilitiesGreenEnergyDetails: {
       utility: {
         sewerInformation: faker.lorem.words(),
-        internetAndTv: faker.lorem.words()
+        internetAndTv: faker.lorem.words(),
       },
       greenEnergy: {
-        Sunscore: `${faker.lorem.words()}: ${faker.random.number(100)}`
-      }
+        sunscore: `${faker.lorem.words()}: ${faker.random.number(100)}`,
+      },
     },
     communityAndNeighborhoodDetails: {
-      Location: {
-        Region: faker.address.county()
-      }
+      location: {
+        region: faker.address.county(),
+      },
     },
     hoaAndFinancialDetails: {
       otherFinancialInformation: {
         taxAssessedValue: `$${faker.random.number(5000000)}`,
-        annualTaxAmount: `$${faker.random.number(60000)}`
-      }
-    }
+        annualTaxAmount: `$${faker.random.number(60000)}`,
+      },
+    },
   }));
+}
 
-  // } else if (i < 50) {
-  //   sampleListings.push(new Listing({
-
-  //   }));
-  // } else if (i < 75) {
-  //   sampleListings.push(new Listing({
-
-  //   }));
-  // } else if (i < 100) {
-  //   sampleListings.push(new Listing({
-
-  //   }));
-  // }
+const insertSampleListings = function insertSampleListings() {
+  for (let i = 0; i < sampleListings.length; i += 1) {
+    Listing.findOneAndUpdate({ listingId: sampleListings[i].listingId },
+      sampleListings[i], { upsert: true })
+      .catch((err) => err);
+  }
+  setTimeout(() => mongoose.disconnect(), 1500);
+  return 'completed';
 };
 
-const insertSampleListings = function () {
-  Listing.create(sampleListings)
-    .then(console.log(`${sampleListings.length} items inserted`))
-};
+insertSampleListings();
 
-// insertSampleListings();
 module.exports.sampleListings = sampleListings;
 module.exports.insertSampleListings = insertSampleListings;
