@@ -26,6 +26,9 @@
     "axios-hooks": "^1.7.2",
     "blubird": "0.0.1-security",
     "circleci": "^0.3.3",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongoose": "^5.7.12",
@@ -43,9 +46,6 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "babel-loader": "^8.0.6",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "enzyme-to-json": "^3.4.3",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
@@ -53,7 +53,12 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^24.9.0",
+    "jsdom": "15.2.1",
+    "jsdom-global": "3.0.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["<rootDir>setupTests.js"]
   }
 }

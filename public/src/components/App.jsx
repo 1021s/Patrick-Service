@@ -8,7 +8,6 @@ import ConstructionDetails from './ConstructionDetails';
 import UtilitiesDetails from './UtilitiesDetails';
 import CommunityDetails from './CommunityDetails';
 import HoaDetails from './HoaDetails';
-import OtherDetails from './OtherDetails';
 
 class App extends React.Component {
   constructor(props) {
@@ -79,8 +78,6 @@ class App extends React.Component {
           <CommunityDetails listing={listing.communityAndNeighborhoodDetails} />
           <h3 className="details">HOA and financial details</h3>
           <HoaDetails listing={listing.hoaAndFinancialDetails} />
-          <h3 className="details">Other</h3>
-          <OtherDetails listing={listing} />
           <button className="link" onClick={this.expand} type="button">See less facts and features</button>
         </div>
       );
