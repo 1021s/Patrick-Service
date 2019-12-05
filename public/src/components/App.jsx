@@ -8,6 +8,7 @@ import ConstructionDetails from './ConstructionDetails';
 import UtilitiesDetails from './UtilitiesDetails';
 import CommunityDetails from './CommunityDetails';
 import HoaDetails from './HoaDetails';
+import Other from './Other';
 
 class App extends React.Component {
   constructor(props) {
@@ -78,6 +79,8 @@ class App extends React.Component {
           <CommunityDetails listing={listing.communityAndNeighborhoodDetails} />
           <div className="details">HOA and financial details</div>
           <HoaDetails listing={listing.hoaAndFinancialDetails} />
+          <div className="details">Other</div>
+          <Other listing={listing.other} />
           <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.handleKeyPress} role="button">See less facts and features</div>
         </div>
       );

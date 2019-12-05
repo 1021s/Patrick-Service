@@ -94,6 +94,16 @@ const listingSchema = new Schema({
       of: String,
     },
   },
+  other: {
+    sourceDetails: {
+      type: Map,
+      of: String,
+    },
+    otherFacts: {
+      type: Map,
+      of: String,
+    },
+  },
 });
 
 const Listing = mongoose.model('Listing', listingSchema);
