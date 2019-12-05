@@ -1,0 +1,83 @@
+body {
+  font-family: "Open Sans", Tahoma, Geneva, sans-serif;
+  line-height: 1.5;
+  color: rgb(42, 42, 51);
+  font-size: 93.75%;
+}
+
+.title-line {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0px;
+  text-transform: none;
+  border-bottom: solid 1px rgb(209, 209, 213);
+  padding: calc(48px) 0px 16px;
+}
+
+.facts-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.interior-details-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 300px;
+}
+
+.property-details-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 275px;
+}
+
+.construction-details-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 200px;
+}
+
+.utilities-details-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 150px;
+}
+
+.details {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-transform: none;
+  background: rgb(224, 242, 255);
+  margin: 24px -16px;
+  padding: 8px 16px;
+}
+
+.type {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-transform: none;
+  margin: 0px;
+}
+
+.item {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-transform: none;
+  margin: 0px -22px;
+}

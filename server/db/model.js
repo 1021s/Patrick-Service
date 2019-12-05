@@ -83,13 +83,13 @@ const listingSchema = new Schema({
     },
   },
   communityAndNeighborhoodDetails: {
-    Location: {
+    location: {
       type: Map,
       of: String,
     },
   },
   hoaAndFinancialDetails: {
-    sourceDetails: {
+    otherFinancialInformation: {
       type: Map,
       of: String,
     },

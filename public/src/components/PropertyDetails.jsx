@@ -3,7 +3,7 @@ import React from 'react';
 import ListHelper from './ListHelper';
 
 const PropertyDetails = ({ listing }) => (
-  <div>
+  <div className="property-details-container">
     <div>
       <div className="type">Parking</div>
       <ul>

@@ -2,6 +2,9 @@ const faker = require('faker');
 const mongoose = require('mongoose');
 const Listing = require('./model.js');
 
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 const sampleListings = [];
 
 for (let i = 0; i < 100; i += 1) {
@@ -99,19 +102,11 @@ for (let i = 0; i < 100; i += 1) {
 
 const insertSampleListings = function insertSampleListings() {
   for (let i = 0; i < sampleListings.length; i += 1) {
-    Listing.findOne({ listingId: sampleListings[i].listingId })
-      .then((data) => {
-        if (data === null) {
-          Listing.create(sampleListings[i])
-            .catch((err) => err);
-        } else {
-          Listing.update(data, sampleListings[i])
-            .catch((err) => err);
-        }
-      })
+    Listing.findOneAndUpdate({ listingId: sampleListings[i].listingId },
+      sampleListings[i], { upsert: true })
       .catch((err) => err);
   }
-  setTimeout(() => mongoose.disconnect(), 1000);
+  setTimeout(() => mongoose.disconnect(), 1500);
   return 'completed';
 };
 

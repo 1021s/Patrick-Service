@@ -2,7 +2,7 @@
 import React from 'react';
 
 const ListHelper = ({ entry, value }) => (
-  <li>
+  <li className="item">
     <span>
       {`${entry[0].toUpperCase()}${entry.slice(1).replace(/([a-z](?=[A-Z]))/g, '$1 ').toLowerCase()}: ${value}`}
     </span>
