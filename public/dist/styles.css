@@ -5,6 +5,14 @@ body {
   font-size: 93.75%;
 }
 
+.body-modal {
+  overflow: hidden;
+}
+
+.app-modal {
+  opacity: 50%;
+}
+
 .title-line {
   font-weight: 500;
   font-size: 26px;
@@ -58,7 +66,7 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  height: 475px;
+  height: 455px;
 }
 
 .details {
@@ -94,5 +102,27 @@ body {
 
 .link {
   color: rgb(38, 109, 236);
+  font-weight: 600;
+}
+
+.link-two {
+  color: rgb(38, 109, 236);
+  padding-bottom: 10px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 25%;
+  top: 25px;
+  width: 50%;
+  height: 100%;
+  overflow: auto;
+  background-color: white;
+}
+
+.modal-title {
+  font-size: 28px;
+  line-height: 1.3;
   font-weight: 600;
 }

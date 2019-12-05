@@ -9,6 +9,7 @@ import UtilitiesDetails from './UtilitiesDetails';
 import CommunityDetails from './CommunityDetails';
 import HoaDetails from './HoaDetails';
 import Other from './Other';
+import Modal from './Modal';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,9 +18,11 @@ class App extends React.Component {
     this.state = {
       listing: [],
       expanded: false,
+      modal: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.expand = this.expand.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -49,22 +52,35 @@ class App extends React.Component {
     }
   }
 
+  toggleModal(event) {
+    event.preventDefault();
+    console.log('ran');
+    const { modal } = this.state;
+    this.setState({
+      modal: !modal,
+    });
+  }
+
   render() {
     const {
-      listing, expanded,
+      listing, expanded, modal,
     } = this.state;
     if (expanded === false) {
       return (
-        <div>
+        <div className="App">
           <h1 className="title-line">Facts and features</h1>
           <GraphicsHeader listing={listing} />
-          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.handleKeyPress} role="button">See more facts and features</div>
+          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">See more facts and features</div>
         </div>
       );
     }
-    if (expanded === true) {
+    if (expanded === true && modal === true) {
       return (
-        <div>
+        <div className="App">
+          <Modal show={modal} toggleModal={this.toggleModal}>
+            <p>Modal</p>
+            <p>Data</p>
+          </Modal>
           <h3 className="title-line">Facts and features</h3>
           <GraphicsHeader listing={listing} />
           <div className="details">Interior details</div>
@@ -80,8 +96,31 @@ class App extends React.Component {
           <div className="details">HOA and financial details</div>
           <HoaDetails listing={listing.hoaAndFinancialDetails} />
           <div className="details">Other</div>
-          <Other listing={listing.other} />
-          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.handleKeyPress} role="button">See less facts and features</div>
+          <Other listing={listing.other} toggleModal={this.toggleModal} />
+          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">See less facts and features</div>
+        </div>
+      );
+    }
+    if (expanded === true && modal === false) {
+      return (
+        <div className="App">
+          <h3 className="title-line">Facts and features</h3>
+          <GraphicsHeader listing={listing} />
+          <div className="details">Interior details</div>
+          <InteriorDetails listing={listing.interiorDetails} />
+          <div className="details">Property details</div>
+          <PropertyDetails listing={listing.propertyDetails} />
+          <div className="details">Construction details</div>
+          <ConstructionDetails listing={listing.constructionDetails} />
+          <div className="details">Utilities / Green Energy Details</div>
+          <UtilitiesDetails listing={listing.utilitiesGreenEnergyDetails} />
+          <div className="details">Community and Neighborhood Details</div>
+          <CommunityDetails listing={listing.communityAndNeighborhoodDetails} />
+          <div className="details">HOA and financial details</div>
+          <HoaDetails listing={listing.hoaAndFinancialDetails} />
+          <div className="details">Other</div>
+          <Other listing={listing.other} toggleModal={this.toggleModal} />
+          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">See less facts and features</div>
         </div>
       );
     }

@@ -2,7 +2,7 @@
 import React from 'react';
 import ListHelper from './ListHelper';
 
-const Other = ({ listing }) => (
+const Other = ({ listing, toggleModal }) => (
   <div className="other-details-container">
     <div>
       <div>
@@ -16,15 +16,16 @@ const Other = ({ listing }) => (
       <div>
         <div className="type">Other facts</div>
         <ul>
-          {typeof listing === 'object' && Object.keys(listing.otherFacts).sort().slice(0, 13).map((key) => (
+          {typeof listing === 'object' && Object.keys(listing.otherFacts).sort().slice(0, 12).map((key) => (
             <ListHelper key={key} entry={key} value={listing.otherFacts[key]} />
           ))}
         </ul>
       </div>
+      <div className="link-two" onClick={toggleModal} tabIndex={0} onKeyPress={toggleModal} role="button">See data sources</div>
     </div>
     <div>
       <ul>
-        {typeof listing === 'object' && Object.keys(listing.otherFacts).sort().slice(13).map((key) => (
+        {typeof listing === 'object' && Object.keys(listing.otherFacts).sort().slice(12).map((key) => (
           <ListHelper key={key} entry={key} value={listing.otherFacts[key]} />
         ))}
       </ul>
