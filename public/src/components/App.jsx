@@ -27,10 +27,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // having issues with serving static asset, will fix
-    // const query = window.location.search.substring(1);
+    const parsedUrl = new URL(window.location.href);
     axios.get(
-      'http://localhost:3001/028',
+      `http://localhost:3001/${parsedUrl.href.slice(-3)}`,
     )
       .then((data) => {
         this.setState({
@@ -85,7 +84,7 @@ class App extends React.Component {
     if (expanded === true && modal === true) {
       return (
         <div>
-          <Modal show={modal} toggleModal={this.toggleModal} />
+          <Modal show={modal} toggleModal={this.toggleModal} listing={listing} />
           <div className={appClass}>
             <h3 className="title-line">Facts and features</h3>
             <GraphicsHeader listing={listing} />

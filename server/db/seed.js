@@ -54,7 +54,7 @@ for (let i = 0; i < 100; i += 1) {
         garageSpaces: faker.lorem.words(),
       },
       property: {
-        stories: faker.random.number(),
+        stories: faker.random.number({ min: 1, max: 6 }),
         exteriorFeatures: faker.lorem.word(),
         viewDescription: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`,
       },
