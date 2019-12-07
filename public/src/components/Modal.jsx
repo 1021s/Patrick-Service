@@ -35,12 +35,13 @@ class Modal extends React.Component {
     const { sourcesModal } = this.state;
     if ((!this.wrapperRef.contains(event.target)
       && this.wrapperRef.className === 'second-modal')
-      || (sourcesModal && event.target.innerText === 'X')) {
+      || (sourcesModal && event.target.value === 'X')) {
       this.handleSecondModal(event);
       toggleModal(event);
     } else if (!this.wrapperRef.contains(event.target)) {
       toggleModal(event);
-    } else if (sourcesModal && event.target.innerText !== 'X') {
+    } else if (sourcesModal && event.target.innerText !== 'X'
+    && event.target.id !== 'second') {
       this.handleSecondModal(event);
     }
   }
@@ -210,16 +211,16 @@ class Modal extends React.Component {
     }
     return (
       <div ref={this.setWrapperRef}>
-        <div className="second-modal">
-          <div className="second-modal-content">
-            <div>DISCLAIMER</div>
-            <div>
+        <div className="second-modal" id="second">
+          <div className="second-modal-content" id="second">
+            <div id="second">DISCLAIMER</div>
+            <div id="second">
               The information in this column combines data from broker listing feeds,
               user-submitted information, and county records.
               The information in the &apos;county records&apos;
               column contains only what is recorded in county records.
             </div>
-            <button className="close-second-modal" type="button" onClick={this.handleSecondModal}>X</button>
+            <button className="close-second-modal" type="button" id="second" onClick={this.handleSecondModal}>X</button>
           </div>
         </div>
         <div className="modal">
@@ -368,7 +369,7 @@ class Modal extends React.Component {
               </span>
             </div>
           </div>
-          <button className="close-modal" type="button" onClick={toggleModal}>X</button>
+          <button className="close-modal" type="button" value="X" onClick={toggleModal}>X</button>
         </div>
       </div>
     );
