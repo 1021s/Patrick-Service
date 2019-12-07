@@ -8,7 +8,7 @@ app.use(express.static(`${__dirname}/../public/dist`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/:id', (req, res) => {
+app.get('/listings/:id', (req, res) => {
   Model.find({ listingId: req.params.id })
     .then((data) => {
       res.status(200).send(data);
@@ -18,7 +18,7 @@ app.get('/:id', (req, res) => {
     });
 });
 
-app.get('/allhomes', (req, res) => {
+app.get('/listings', (req, res) => {
   Model.find({})
     .then((data) => {
       res.status(200).send(data);

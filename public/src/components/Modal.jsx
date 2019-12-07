@@ -2,18 +2,43 @@
 import React from 'react';
 
 class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      sourcesModal: false,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+  }
+
   componentDidMount() {
     document.body.classList.add('body-modal');
+    document.addEventListener('mousedown', this.handleClick, false);
   }
 
   componentWillUnmount() {
     document.body.classList.remove('body-modal');
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClick(event) {
+    const { toggleModal } = this.props;
+    event.preventDefault();
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      toggleModal(event);
+    }
   }
 
   render() {
     const { toggleModal, listing } = this.props;
     return (
-      <div className="modal">
+      <div className="modal" ref={this.setWrapperRef}>
         <div className="modal-content">
           <div className="modal-title">
             Home Facts by Data Source
@@ -23,7 +48,8 @@ class Modal extends React.Component {
               &#8203;
             </span>
             <span className="grid-item">
-              ALL SOURCES COMBINED
+              ALL SOURCES COMBINED &#8203;
+              <img src="/images/question.png" alt="" id="question" height="12px" width="12px" />
             </span>
             <span className="grid-item">
               COUNTY RECORDS
@@ -128,13 +154,33 @@ class Modal extends React.Component {
               --
             </span>
             <span className="grid-item" style={{ fontWeight: 'bold' }}>
-            MLS #:
+              MLS #:
             </span>
             <span className="grid-item">
               {listing.other.sourceDetails.mlsId}
             </span>
             <span className="grid-item">
               {listing.other.sourceDetails.mlsId}
+            </span>
+          </div>
+          <div className="grid-container-two">
+            <span className="grid-item" style={{ fontWeight: 500, fontSize: 23 }}>
+              Other facts
+            </span>
+            <span className="grid-item" style={{ fontWeight: 500, fontSize: 23 }}>
+              &#8203;
+            </span>
+            <span className="grid-item" style={{ fontWeight: 500, fontSize: 23 }}>
+              &#8203;
+            </span>
+            <span className="grid-item" style={{ fontWeight: 'bold' }}>
+              More information:
+            </span>
+            <span className="grid-item">
+              --
+            </span>
+            <span className="grid-item">
+              --
             </span>
           </div>
         </div>

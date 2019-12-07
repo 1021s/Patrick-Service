@@ -129,6 +129,7 @@ for (let i = 0; i < 100; i += 1) {
         siteFeatures: faker.lorem.words(),
         offers: faker.lorem.word(),
         commission: faker.random.number({ min: 1, max: 10 }),
+
       },
     },
   }));
