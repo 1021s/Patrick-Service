@@ -31,15 +31,17 @@ class Modal extends React.Component {
 
   handleClick(event) {
     const { toggleModal } = this.props;
-    const { sourcesModal } = this.state;
     event.preventDefault();
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)
-    && this.wrapperRef.className === 'second-modal'
-    && sourcesModal === true) {
+    const { sourcesModal } = this.state;
+    if ((!this.wrapperRef.contains(event.target)
+      && this.wrapperRef.className === 'second-modal')
+      || (sourcesModal && event.target.innerText === 'X')) {
       this.handleSecondModal(event);
       toggleModal(event);
-    } else if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+    } else if (!this.wrapperRef.contains(event.target)) {
       toggleModal(event);
+    } else if (sourcesModal && event.target.innerText !== 'X') {
+      this.handleSecondModal(event);
     }
   }
 
@@ -52,7 +54,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { listing } = this.props;
+    const { toggleModal, listing } = this.props;
     const { sourcesModal } = this.state;
     if (!sourcesModal) {
       return (
@@ -202,13 +204,13 @@ class Modal extends React.Component {
               </span>
             </div>
           </div>
-          <button className="close-modal" type="button" onClick={this.handleClick}>X</button>
+          <button className="close-modal" type="button" onClick={toggleModal}>X</button>
         </div>
       );
     }
     return (
-      <div>
-        <div className="second-modal" ref={this.setWrapperRef}>
+      <div ref={this.setWrapperRef}>
+        <div className="second-modal">
           <div className="second-modal-content">
             <div>DISCLAIMER</div>
             <div>
@@ -366,7 +368,7 @@ class Modal extends React.Component {
               </span>
             </div>
           </div>
-          <button className="close-modal" type="button" onClick={this.handleClick}>X</button>
+          <button className="close-modal" type="button" onClick={toggleModal}>X</button>
         </div>
       </div>
     );
