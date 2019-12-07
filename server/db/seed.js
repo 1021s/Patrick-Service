@@ -138,10 +138,15 @@ for (let i = 0; i < 100; i += 1) {
 const insertSampleListings = function insertSampleListings() {
   for (let i = 0; i < sampleListings.length; i += 1) {
     Listing.findOneAndUpdate({ listingId: sampleListings[i].listingId },
-      sampleListings[i], { upsert: true })
+      sampleListings[i], { new: true, upsert: true, overwrite: true })
       .catch((err) => err);
   }
-  setTimeout(() => mongoose.disconnect(), 1500);
+  // needed to work
+  // setTimeout(() => mongoose.disconnect(), 1500);
+
+  // needed for teesting
+  mongoose.disconnect()
+
   return 'completed';
 };
 

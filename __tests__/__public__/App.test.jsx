@@ -3,7 +3,7 @@
 import 'jsdom-global/register';
 import React from 'react';
 import '../../setupTests';
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import App from '../../public/src/components/App';
 import CommunityDetails from '../../public/src/components/CommunityDetails';
 import ConstructionDetails from '../../public/src/components/ConstructionDetails';
@@ -49,5 +49,35 @@ describe('App render suite', () => {
   it('should render UtilitiesDetails without throwing an error', () => {
     const utilitiesDetails = wrapper.contains(UtilitiesDetails);
     expect(utilitiesDetails).toBe(true);
+  });
+});
+
+describe('App state suite', () => {
+  const wrapper = mount(<App />);
+  const state = wrapper.state();
+
+  it('should have state', () => {
+    expect(state).not.toBe(undefined);
+    expect(state.length).not.toBe(0);
+  });
+  it('should have a listing state', () => {
+    const { listing } = state;
+    expect(typeof listing).toBe('object');
+  });
+  it('should have an expanded state', () => {
+    const { expanded } = state;
+    expect(typeof expanded).toBe('boolean');
+    expect(expanded).toBe(false);
+  });
+});
+
+describe('App click suite', () => {
+  it('button click should hide component', () => {
+    const wrapper = mount(<App />);
+    wrapper
+      .find('.link')
+      .simulate('click');
+
+    expect(wrapper).toMatchSnapshot();
   });
 });

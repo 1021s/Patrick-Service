@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import React from 'react';
 import axios from 'axios';
+import fakeData from '../../data/fakeData';
 import GraphicsHeader from './GraphicsHeader';
 import InteriorDetails from './InteriorDetails';
 import PropertyDetails from './PropertyDetails';
@@ -16,7 +17,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      listing: [],
+      listing: fakeData,
       expanded: false,
       modal: false,
       appClass: '',
@@ -35,7 +36,8 @@ class App extends React.Component {
         this.setState({
           listing: data.data[0],
         });
-      });
+      })
+      .catch((err) => err);
   }
 
   expand(event) {
@@ -77,7 +79,10 @@ class App extends React.Component {
         <div className="App">
           <h1 className="title-line">Facts and features</h1>
           <GraphicsHeader listing={listing} />
-          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">See more facts and features</div>
+          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
+            <img src="/images/more.png" alt="" height="20px" width="20px" />
+            See more facts and features
+          </div>
         </div>
       );
     }
@@ -102,7 +107,10 @@ class App extends React.Component {
             <HoaDetails listing={listing.hoaAndFinancialDetails} />
             <div className="details">Other</div>
             <Other listing={listing.other} toggleModal={this.toggleModal} />
-            <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">See less facts and features</div>
+            <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
+              <img src="/images/less.png" alt="" height="20px" width="20px" />
+              See less facts and features
+            </div>
           </div>
         </div>
       );
@@ -126,7 +134,10 @@ class App extends React.Component {
           <HoaDetails listing={listing.hoaAndFinancialDetails} />
           <div className="details">Other</div>
           <Other listing={listing.other} toggleModal={this.toggleModal} />
-          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">See less facts and features</div>
+          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
+            <img src="/images/less.png" alt="" height="20px" width="20px" />
+            See less facts and features
+          </div>
         </div>
       );
     }

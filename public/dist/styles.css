@@ -67,7 +67,6 @@ body {
   flex-wrap: wrap;
   justify-content: space-evenly;
   height: 465px;
-  padding-bottom: 25px;
 }
 
 .details {
@@ -111,11 +110,16 @@ body {
 }
 
 .link {
+  display: flex;
+  vertical-align: middle;
   color: rgb(38, 109, 236);
   font-weight: 600;
+  padding-top: 25px;
 }
 
 .link-two {
+  display: flex;
+  vertical-align: middle;
   color: rgb(38, 109, 236);
   padding-bottom: 10px;
 }
@@ -215,7 +219,9 @@ body {
 }
 
 .grid-item {
+  box-sizing: border-box;
   border-bottom: solid 1px rgb(42, 42, 51, 0.1);
   font-size: 13px;
   line-height: 1.5;
+  align-self: center;
 }
