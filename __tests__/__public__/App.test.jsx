@@ -77,7 +77,6 @@ describe('App click suite', () => {
     wrapper
       .find('.link')
       .simulate('click');
-
     expect(wrapper).toMatchSnapshot();
   });
 });
