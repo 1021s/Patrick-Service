@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react';
 import axios from 'axios';
-import fakeData from '../../data/fakeData';
 import GraphicsHeader from './GraphicsHeader';
 import InteriorDetails from './InteriorDetails';
 import PropertyDetails from './PropertyDetails';
@@ -17,7 +16,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      listing: fakeData,
+      listing: {},
       expanded: false,
       modal: false,
       appClass: '',

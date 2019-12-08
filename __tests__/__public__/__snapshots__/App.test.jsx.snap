@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App click suite button click should hide component 1`] = `ReactWrapper {}`;
+
+exports[`App click suite button click should show component 1`] = `ReactWrapper {}`;

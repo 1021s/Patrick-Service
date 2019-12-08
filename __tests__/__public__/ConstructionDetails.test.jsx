@@ -4,16 +4,17 @@ import 'jsdom-global/register';
 import React from 'react';
 import '../../setupTests';
 import { mount, shallow } from 'enzyme';
+import fakeData from '../../public/data/fakeData';
 import ConstructionDetails from '../../public/src/components/ConstructionDetails';
 
-describe('MyComponent', () => {
+describe('ConstructionDetails render suite', () => {
   it('should render correctly in "debug" mode', () => {
     const component = shallow(<ConstructionDetails debug />);
     expect(component).toMatchSnapshot();
   });
 
-  it('should render correctly with no props', () => {
-    const component = mount(<ConstructionDetails />);
+  it('should render correctly with props', () => {
+    const component = mount(<ConstructionDetails listing={fakeData.constructionDetails} />);
     expect(component).toMatchSnapshot();
   });
 });

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal click suite button click should hide second modal 1`] = `ReactWrapper {}`;
+
+exports[`Modal click suite button click should show second modal 1`] = `ReactWrapper {}`;
+
+exports[`Modal click suite button click should show second modal 2`] = `ReactWrapper {}`;
+
+exports[`Modal render suite should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`Modal render suite should render correctly with props 1`] = `ReactWrapper {}`;
