@@ -54,7 +54,7 @@ for (let i = 0; i < 100; i += 1) {
         garageSpaces: faker.lorem.words(),
       },
       property: {
-        stories: faker.random.number(),
+        stories: faker.random.number({ min: 1, max: 6 }),
         exteriorFeatures: faker.lorem.word(),
         viewDescription: `${faker.lorem.word()}, ${faker.lorem.word()}, ${faker.lorem.word()}`,
       },
@@ -97,16 +97,56 @@ for (let i = 0; i < 100; i += 1) {
         annualTaxAmount: `$${faker.random.number(60000)}`,
       },
     },
+    other: {
+      sourceDetails: {
+        mlsId: faker.random.number({ min: 1000000, max: 9999999 }),
+      },
+      otherFacts: {
+        busLineNearby: faker.random.boolean(),
+        propertyType: faker.lorem.word(),
+        buildingInfo: faker.lorem.words(),
+        energySource: faker.lorem.words(),
+        masterBedroomLocation: faker.lorem.word(),
+        waterSource: faker.lorem.word(),
+        foundation: faker.lorem.words(),
+        possesion: faker.lorem.word(),
+        parkingType: faker.lorem.words(),
+        form17: faker.lorem.word(),
+        appliancesThatStay: faker.lorem.words(),
+        heatingAndCooling: faker.lorem.words(),
+        entranceLevel: faker.lorem.word(),
+        roof: faker.lorem.word(),
+        utilityRoomLocation: faker.lorem.word(),
+        features: faker.lorem.words(),
+        lotDetails: faker.lorem.words(),
+        floorCovering: faker.lorem.words(),
+        style: faker.lorem.words(),
+        potentialTerms: faker.lorem.words(),
+        kitchenLocation: faker.lorem.word(),
+        architecture: faker.lorem.word(),
+        lotTopography: faker.lorem.word(),
+        exterior: faker.lorem.word(),
+        siteFeatures: faker.lorem.words(),
+        offers: faker.lorem.word(),
+        commission: faker.random.number({ min: 1, max: 10 }),
+
+      },
+    },
   }));
 }
 
 const insertSampleListings = function insertSampleListings() {
   for (let i = 0; i < sampleListings.length; i += 1) {
     Listing.findOneAndUpdate({ listingId: sampleListings[i].listingId },
-      sampleListings[i], { upsert: true })
+      sampleListings[i], { new: true, upsert: true, overwrite: true })
       .catch((err) => err);
   }
-  setTimeout(() => mongoose.disconnect(), 1500);
+  // needed to work
+  // setTimeout(() => mongoose.disconnect(), 1500);
+
+  // needed for teesting
+  mongoose.disconnect()
+
   return 'completed';
 };
 

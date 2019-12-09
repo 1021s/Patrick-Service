@@ -3,7 +3,9 @@
 import 'jsdom-global/register';
 import React from 'react';
 import '../../setupTests';
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
+import axios from 'axios';
+import fakeData from '../../public/data/fakeData';
 import App from '../../public/src/components/App';
 import CommunityDetails from '../../public/src/components/CommunityDetails';
 import ConstructionDetails from '../../public/src/components/ConstructionDetails';
@@ -12,6 +14,9 @@ import HoaDetails from '../../public/src/components/HoaDetails';
 import InteriorDetails from '../../public/src/components/InteriorDetails';
 import PropertyDetails from '../../public/src/components/PropertyDetails';
 import UtilitiesDetails from '../../public/src/components/UtilitiesDetails';
+
+jest.mock('axios');
+axios.get.mockResolvedValue(fakeData);
 
 describe('App render suite', () => {
   const wrapper = mount(<App />);
@@ -49,5 +54,44 @@ describe('App render suite', () => {
   it('should render UtilitiesDetails without throwing an error', () => {
     const utilitiesDetails = wrapper.contains(UtilitiesDetails);
     expect(utilitiesDetails).toBe(true);
+  });
+});
+
+describe('App state suite', () => {
+  const wrapper = mount(<App />);
+  const state = wrapper.state();
+
+  it('should have state', () => {
+    expect(state).not.toBe(undefined);
+    expect(state.length).not.toBe(0);
+  });
+  it('should have a listing state', () => {
+    const { listing } = state;
+    expect(typeof listing).toBe('object');
+  });
+  it('should have an expanded state', () => {
+    const { expanded } = state;
+    expect(typeof expanded).toBe('boolean');
+    expect(expanded).toBe(false);
+  });
+});
+
+describe('App click suite', () => {
+  it('button click should show component', () => {
+    const wrapper = mount(<App />);
+    wrapper
+      .find('.link')
+      .simulate('click');
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('button click should hide component', () => {
+    const wrapper = mount(<App />);
+    wrapper
+      .find('.link')
+      .simulate('click')
+      .find('.link')
+      .simulate('click');
+    expect(wrapper).toMatchSnapshot();
   });
 });

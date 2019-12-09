@@ -8,23 +8,17 @@ app.use(express.static(`${__dirname}/../public/dist`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/:id', (req, res) => {
+app.get('/listings/:id', (req, res) => {
   Model.find({ listingId: req.params.id })
     .then((data) => {
-      res.status(200).send(data);
+      if (data.length !== 0) {
+        res.status(200).send(data);
+      } else {
+        res.status(404).send();
+      }
     })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-});
-
-app.get('/allhomes', (req, res) => {
-  Model.find({})
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
+    .catch(() => {
+      res.status(500).send();
     });
 });
 

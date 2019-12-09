@@ -8,30 +8,35 @@ import ConstructionDetails from './ConstructionDetails';
 import UtilitiesDetails from './UtilitiesDetails';
 import CommunityDetails from './CommunityDetails';
 import HoaDetails from './HoaDetails';
+import Other from './Other';
+import Modal from './Modal';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      listing: [],
+      listing: {},
       expanded: false,
+      modal: false,
+      appClass: '',
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.expand = this.expand.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
-    // having issues with serving static asset, will fix
-    // const query = window.location.search.substring(1);
+    const parsedUrl = new URL(window.location.href);
     axios.get(
-      'http://localhost:3001/028',
+      `http://localhost:3001/listings/${parsedUrl.href.slice(-3)}`,
     )
       .then((data) => {
         this.setState({
           listing: data.data[0],
         });
-      });
+      })
+      .catch((err) => err);
   }
 
   expand(event) {
@@ -48,22 +53,70 @@ class App extends React.Component {
     }
   }
 
+  toggleModal(event) {
+    event.preventDefault();
+    const { modal } = this.state;
+    if (!modal) {
+      this.setState({
+        modal: !modal,
+        appClass: 'app-modal',
+      });
+    } else {
+      this.setState({
+        modal: !modal,
+        appClass: 'app-modal',
+      });
+    }
+  }
+
   render() {
     const {
-      listing, expanded,
+      listing, expanded, modal, appClass,
     } = this.state;
     if (expanded === false) {
       return (
-        <div>
+        <div className="App">
           <h1 className="title-line">Facts and features</h1>
           <GraphicsHeader listing={listing} />
-          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.handleKeyPress} role="button">See more facts and features</div>
+          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
+            <img src="/images/more.png" alt="" height="20px" width="20px" />
+            See more facts and features
+          </div>
         </div>
       );
     }
-    if (expanded === true) {
+    if (expanded === true && modal === true) {
       return (
         <div>
+          <Modal show={modal} toggleModal={this.toggleModal} listing={listing} />
+          <div className={appClass}>
+            <h3 className="title-line">Facts and features</h3>
+            <GraphicsHeader listing={listing} />
+            <div className="details">Interior details</div>
+            <InteriorDetails listing={listing.interiorDetails} />
+            <div className="details">Property details</div>
+            <PropertyDetails listing={listing.propertyDetails} />
+            <div className="details">Construction details</div>
+            <ConstructionDetails listing={listing.constructionDetails} />
+            <div className="details">Utilities / Green Energy Details</div>
+            <UtilitiesDetails listing={listing.utilitiesGreenEnergyDetails} />
+            <div className="details">Community and Neighborhood Details</div>
+            <CommunityDetails listing={listing.communityAndNeighborhoodDetails} />
+            <div className="details">HOA and financial details</div>
+            <HoaDetails listing={listing.hoaAndFinancialDetails} />
+            <div className="details">Other</div>
+            <Other listing={listing.other} toggleModal={this.toggleModal} />
+            <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
+              <img src="/images/less.png" alt="" height="20px" width="20px" />
+              See less facts and features
+            </div>
+          </div>
+        </div>
+      );
+    }
+    if (expanded === true && modal === false) {
+      return (
+        <div className="App">
           <h3 className="title-line">Facts and features</h3>
           <GraphicsHeader listing={listing} />
           <div className="details">Interior details</div>
@@ -78,7 +131,12 @@ class App extends React.Component {
           <CommunityDetails listing={listing.communityAndNeighborhoodDetails} />
           <div className="details">HOA and financial details</div>
           <HoaDetails listing={listing.hoaAndFinancialDetails} />
-          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.handleKeyPress} role="button">See less facts and features</div>
+          <div className="details">Other</div>
+          <Other listing={listing.other} toggleModal={this.toggleModal} />
+          <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
+            <img src="/images/less.png" alt="" height="20px" width="20px" />
+            See less facts and features
+          </div>
         </div>
       );
     }

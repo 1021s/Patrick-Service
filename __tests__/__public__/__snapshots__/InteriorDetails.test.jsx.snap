@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InteriorDetails render suite should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`InteriorDetails render suite should render correctly with props 1`] = `ReactWrapper {}`;
