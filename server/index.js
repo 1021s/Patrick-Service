@@ -2,7 +2,7 @@ const express = require('express');
 const Model = require('./db/model.js');
 
 const app = express();
-const port = 3001;
+const port = 3002;
 
 app.use(express.static(`${__dirname}/../public/dist`));
 app.use(express.urlencoded({ extended: true }));

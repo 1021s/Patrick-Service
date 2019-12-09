@@ -29,7 +29,7 @@ class App extends React.Component {
   componentDidMount() {
     const parsedUrl = new URL(window.location.href);
     axios.get(
-      `http://localhost:3001/listings/${parsedUrl.href.slice(-3)}`,
+      `/listings/${parsedUrl.href.slice(-3)}`,
     )
       .then((data) => {
         this.setState({
