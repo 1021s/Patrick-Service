@@ -142,10 +142,10 @@ const insertSampleListings = function insertSampleListings() {
       .catch((err) => err);
   }
   // needed to work
-  // setTimeout(() => mongoose.disconnect(), 1500);
+  setTimeout(() => mongoose.disconnect(), 1500);
 
   // needed for teesting
-  mongoose.disconnect()
+  // mongoose.disconnect()
 
   return 'completed';
 };
