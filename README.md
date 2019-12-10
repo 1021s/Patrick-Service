@@ -6,7 +6,7 @@ To use this module:
 
 - npm run db-setup - Seed the database with Faker Data
 
-- npm start - Start the Express Server on localhost:3001
+- npm start - Start the Express Server on localhost:3002
 
 - npm run build - Set up bundle.js
 
