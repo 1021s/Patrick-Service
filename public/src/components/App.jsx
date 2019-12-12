@@ -10,6 +10,7 @@ import CommunityDetails from './CommunityDetails';
 import HoaDetails from './HoaDetails';
 import Other from './Other';
 import Modal from './Modal';
+import '../../dist/styles.css';
 
 class App extends React.Component {
   constructor(props) {

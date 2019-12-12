@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import '../../dist/styles.css';
 
 const GraphicsHeader = ({ listing }) => (
   <div className="facts-container">

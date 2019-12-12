@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import '../../dist/styles.css';
 
 class Modal extends React.Component {
   constructor(props) {
