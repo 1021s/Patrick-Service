@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  Patrick-Service:
+    build: .
+    depends_on:
+      - 'database'
+    ports:
+      - '3002:3002'
+
+  database:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+      volumes:
+        - data-volume:/data/db
+  volumes:
+    data-volume:
