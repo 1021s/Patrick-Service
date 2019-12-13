@@ -29,6 +29,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const parsedUrl = new URL(window.location.href);
+    console.log(parsedUrl.href.slice(-3));
     axios.get(
       `/listings/${parsedUrl.href.slice(-3)}`,
     )
