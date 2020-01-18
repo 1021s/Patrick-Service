@@ -10,6 +10,7 @@ import CommunityDetails from './CommunityDetails';
 import HoaDetails from './HoaDetails';
 import Other from './Other';
 import Modal from './Modal';
+import '../../dist/styles.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -79,7 +80,7 @@ class App extends React.Component {
           <h1 className="title-line">Facts and features</h1>
           <GraphicsHeader listing={listing} />
           <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
-            <img src="/images/more.png" alt="" height="20px" width="20px" />
+            <img src="https://img.icons8.com/ultraviolet/40/000000/circled-chevron-down.png" alt="" height="20px" width="20px" />
             See more facts and features
           </div>
         </div>
@@ -107,7 +108,7 @@ class App extends React.Component {
             <div className="details">Other</div>
             <Other listing={listing.other} toggleModal={this.toggleModal} />
             <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
-              <img src="/images/less.png" alt="" height="20px" width="20px" />
+              <img src="https://img.icons8.com/ultraviolet/40/000000/circled-chevron-up.png" alt="" height="20px" width="20px" />
               See less facts and features
             </div>
           </div>
@@ -134,7 +135,7 @@ class App extends React.Component {
           <div className="details">Other</div>
           <Other listing={listing.other} toggleModal={this.toggleModal} />
           <div className="link" onClick={this.expand} tabIndex={0} onKeyPress={this.expand} role="button">
-            <img src="/images/less.png" alt="" height="20px" width="20px" />
+            <img src="https://img.icons8.com/ultraviolet/40/000000/circled-chevron-up.png" alt="" height="20px" width="20px" />
             See less facts and features
           </div>
         </div>

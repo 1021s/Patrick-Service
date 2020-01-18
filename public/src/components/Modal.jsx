@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import '../../dist/styles.css';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class Modal extends React.Component {
               </span>
               <span className="grid-item">
                 ALL SOURCES COMBINED &#8203;
-                <img src="/images/question.png" alt="" id="question" height="12px" width="12px" onClick={this.handleSecondModal} onKeyPress={this.handleSecondModal} />
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/help.png" alt="" id="question" height="12px" width="12px" onClick={this.handleSecondModal} onKeyPress={this.handleSecondModal} />
               </span>
               <span className="grid-item">
                 COUNTY RECORDS
@@ -234,7 +235,7 @@ class Modal extends React.Component {
               </span>
               <span className="grid-item">
                 ALL SOURCES COMBINED &#8203;
-                <img src="/images/question.png" alt="" id="question" height="12px" width="12px" onClick={this.handleSecondModal} onKeyPress={this.handleSecondModal} />
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/help.png" alt="" id="question" height="12px" width="12px" onClick={this.handleSecondModal} onKeyPress={this.handleSecondModal} />
               </span>
               <span className="grid-item">
                 COUNTY RECORDS

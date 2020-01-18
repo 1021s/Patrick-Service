@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ListHelper from './ListHelper';
+import '../../dist/styles.css';
 
 const InteriorDetails = ({ listing }) => (
   <div className="interior-details-container">
