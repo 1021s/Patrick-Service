@@ -1,22 +1,29 @@
-Welcome to the Facts & features module for my team's Zillow Clone.
+# Zillot Fact & Features
 
+> Facts & Features module for an open source real estate listing item page
 
+## ScreenShots
 
-To use this module:
+![Zillot](screenshot.jpeg)
 
-- npm run db-setup - Seed the database with Faker Data
+## Usage
 
-- npm start - Start the Express Server on localhost:3002
+```bash
+# Install dependencies
+$ npm install
 
-- npm run build - Set up bundle.js
+# Build Webpack
+$ npm run build
 
-Then open a window in your browser at localhost:3001/(three digit house number from 000 - 099)
+# Seed Mongodb
+$ npm run db-setup
 
+# Run the app
+$ npm start
+```
 
+## Requirements
 
-
-If you want to use this app in a devlopment environment:
-
-- npm run react-dev - Sets up webpack to watch JSX files and transpile changes with Babel
-
-- npm test - Runs all jest test suites
+- [npm](http://npmjs.com)
+- [Node.js](https://nodejs.org/en/download/)
+- [Git](https://git-scm.com)

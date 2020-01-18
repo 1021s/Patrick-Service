@@ -1,11 +1,15 @@
 body {
   font-family: "Open Sans", Tahoma, Geneva, sans-serif;
   line-height: 1.5;
-  color: rgb(42, 42, 51);
   font-size: 93.75%;
 }
 
 .body-modal {
+  overflow: hidden;
+}
+
+.app, .app-modal {
+  width: 100%;
   overflow: hidden;
 }
 
@@ -126,7 +130,7 @@ body {
 
 .modal {
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   left: 28%;
   top: 30px;
   width: 40%;
@@ -146,7 +150,7 @@ body {
 
 .second-modal {
   position: fixed;
-  z-index: 2;
+  z-index: 11;
   left: 32%;
   top: 38px;
   width: 265px;
